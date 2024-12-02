@@ -27,16 +27,16 @@ import {
 
 export const formSchema = z.object({
   email: z.string().email({
-    message: 'Dit is geen geldig e-mailadres',
+    message: 'This is not a valid email address',
   }),
   password: z.string().min(8, {
-    message: 'Het wachtwoord moet minimaal 8 karakters lang zijn',
+    message: 'The password has to be at least 8 characters long',
   }).max(50, {
-    message: 'Het wachtwoord mag maximaal 50 karakters lang zijn',
+    message: 'The password can be at most 50 characters long',
   }),
   confirmPassword: z.string().min(8).max(50),
 }).refine((data) => data.password === data.confirmPassword, {
-  message: 'De wachtwoorden komen niet overeen',
+  message: 'The passwords do not match',
   path: ['confirmPassword'],
 })
 
@@ -57,9 +57,9 @@ export function RegisterForm() {
   return (
     <Card className="mx-auto max-w-sm">
       <CardHeader>
-        <CardTitle className="text-2xl">Registreren</CardTitle>
+        <CardTitle className="text-2xl">Register</CardTitle>
         <CardDescription>
-          Creëer een account met e-mail of met een van de socials
+          Create an account with your email address
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -78,40 +78,29 @@ export function RegisterForm() {
               <FormItem className="grid gap-2">
                 <FormLabel>Wachtwoord</FormLabel>
                 <FormControl>
-                  <Input type="password" placeholder="Wachtwoord" {...field} />
+                  <Input type="password" placeholder="Password" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )} />
             <FormField control={form.control} name="confirmPassword" render={({ field }) => (
               <FormItem className="grid gap-2">
-                <FormLabel>Bevestig wachtwoord</FormLabel>
+                <FormLabel>Confirm password</FormLabel>
                 <FormControl>
-                  <Input type="password" placeholder="Bevestig wachtwoord" {...field} />
+                  <Input type="password" placeholder="Repeat your password..." {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )} />
             <div className="grid gap-4">
               <Button type="submit" className="w-full">
-                Registreer
+                Register
               </Button>
-              <div className="flex justify-between items-center">
-                <p>Registreer met: </p>
-                <div className="flex gap-4">
-                  <Button variant="outline">
-                    <FaGoogle />
-                  </Button>
-                  <Button variant="outline">
-                    <FaLinkedin />
-                  </Button>
-                </div>
-              </div>
             </div>
             <div className="mt-4 text-center text-sm">
-              Heb je al een account?{" "}
+              Already got an account?{" "}
               <Link href="/login" className="underline">
-                Inloggen
+                Login
               </Link>
             </div>
           </form>

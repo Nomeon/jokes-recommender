@@ -59,7 +59,7 @@ function Header() {
         <div className="w-1/4">
           <h1>Joke Recommender</h1>
         </div>
-        <NavigationMenu className="w-1/2">
+        {/* <NavigationMenu className="w-1/2">
           <NavigationMenuList>
             <NavigationMenuItem>
               <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>
@@ -117,7 +117,7 @@ function Header() {
               </Link>
             </NavigationMenuItem>
           </NavigationMenuList>
-        </NavigationMenu>
+        </NavigationMenu> */}
         <div className="w-1/4 flex justify-end">
           <Link href='/account' className={buttonVariants({ variant: "default" })}>Account</Link>
         </div>

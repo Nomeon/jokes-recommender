@@ -13,7 +13,7 @@ import { Input } from "@/components/ui/input"
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { login, loginWithGoogle, loginWithLinkedin } from "@/app/login/actions";
+import { login, loginWithGoogle } from "@/app/login/actions";
 import { FaGoogle } from "react-icons/fa";
 import Link from "next/link"
 import {
@@ -29,9 +29,9 @@ export const formSchema = z.object({
     message: 'Dit is geen geldig e-mailadres',
   }),
   password: z.string().min(8, {
-    message: 'Het wachtwoord moet minimaal 8 karakters lang zijn',
+    message: 'The password has to be at least 8 characters long',
   }).max(50, {
-    message: 'Het wachtwoord mag maximaal 50 karakters lang zijn',
+    message: 'The password can be at most 50 characters long',
   }),
 })
 
@@ -53,7 +53,7 @@ export function LoginForm() {
       <CardHeader>
         <CardTitle className="text-2xl">Login</CardTitle>
         <CardDescription>
-          Enter your email below to login to your account
+          Enter your credentials to login to your account
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -71,9 +71,9 @@ export function LoginForm() {
             <FormField control={form.control} name="password" render={({ field }) => (
               <FormItem className="grid gap-2">
                 <div className="flex items-center">
-                  <FormLabel>Wachtwoord</FormLabel>
+                  <FormLabel>Password</FormLabel>
                   <Link href="#" className="ml-auto inline-block text-sm underline">
-                    Wachtwoord vergeten?
+                    Forgot your password?
                   </Link>
                 </div>
                 <FormControl>
@@ -86,23 +86,23 @@ export function LoginForm() {
               <Button type="submit" className="w-full">
                 Login
               </Button>
-              <div className="flex justify-between items-center">
-                <p>Login met: </p>
-                <div className="flex gap-4">
-                  <Button onClick={loginWithGoogle} variant="outline">
-                    <FaGoogle />
-                  </Button>
-                </div>
-              </div>
-            </div>
-            <div className="mt-4 text-center text-sm">
-              Heb je nog geen account?{" "}
-              <Link href="/registreren" className="underline">
-                Registreren
-              </Link>
             </div>
           </form>
         </Form>
+          <div className="flex justify-between items-center pt-4">
+            <p>Or login with: </p>
+            <div className="flex gap-4">
+              <Button onClick={loginWithGoogle} variant="outline">
+                <FaGoogle />
+              </Button>
+            </div>
+          </div>
+          <div className="mt-4 text-center text-sm">
+            Haven't got an account yet?{" "}
+            <Link href="/register" className="underline">
+              Register
+            </Link>
+          </div>
       </CardContent>
     </Card>
   )

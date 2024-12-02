@@ -24,8 +24,8 @@ export default async function Profile() {
   return (
     <div className='mt-10 w-full flex flex-col gap-4 items-center justify-center'>
       <div className='flex items-center gap-4'>
-        <p>Hallo, <b>{name}</b>!</p>
-        <Button onClick={logout} variant='outline'>Uitloggen</Button>
+        <p>Hello, <b>{name}</b>!</p>
+        <Button onClick={logout} variant='outline'>Sign out</Button>
       </div>
     </div>
   )
