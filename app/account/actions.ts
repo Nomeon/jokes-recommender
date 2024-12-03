@@ -15,3 +15,17 @@ export async function logout() {
   revalidatePath('/', 'layout')
   redirect('/')
 }
+
+export async function getUserId() {
+  const supabase = await createClient()
+  const { data, error } = await supabase.auth.getUser()
+
+  if (error || !data?.user) {
+    redirect('/login')
+  }
+
+  const userId = data.user.id
+  const ans = await supabase.from('profiles').select('userId').eq('id', userId)
+  const profileId = ans.data![0].userId
+  return profileId
+}

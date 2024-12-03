@@ -1,11 +1,11 @@
 import { redirect } from 'next/navigation'
 import { createClient } from '@/utils/supabase/server'
 import { Button } from '@/components/ui/button'
-import { logout } from '@/app/account/actions'
+import { logout, getUserId } from '@/app/account/actions'
+import { JokeCard } from '@/components/parts/joke-card'
 
 export default async function Profile() {
   const supabase = await createClient()
-
   const { data, error } = await supabase.auth.getUser()
 
   if (error || !data?.user) {
@@ -21,12 +21,15 @@ export default async function Profile() {
     name = data.user.email!
   }
 
+  const profileId: number = await getUserId()
+
   return (
     <div className='mt-10 w-full flex flex-col gap-4 items-center justify-center'>
       <div className='flex items-center gap-4'>
         <p>Hello, <b>{name}</b>!</p>
         <Button onClick={logout} variant='outline'>Sign out</Button>
       </div>
+      <JokeCard profileId={profileId} />
     </div>
   )
 }
